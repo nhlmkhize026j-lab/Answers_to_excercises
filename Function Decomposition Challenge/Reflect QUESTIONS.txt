@@ -1,0 +1,68 @@
+# Reflection
+
+## 1. How did breaking down the function improve readability and maintainability?
+
+Breaking the function into smaller helper functions made a huge difference in clarity. Instead of reading through one long, complex block of code, the main function now shows a clear high-level flow:
+
+Validate ? Filter ? Compute ? Build ? Output
+
+Each step is easy to understand without digging into implementation details.
+
+From a maintainability perspective:
+- Changes can be made in one place without affecting everything else
+- Bugs are easier to isolate because each function has a single responsibility
+- The code is less fragile—modifying one feature won’t accidentally break another
+
+The function is now easier to read, easier to debug, and easier to extend.
+
+---
+
+## 2. What was the most challenging part of decomposing the function?
+
+The most challenging part was identifying clean boundaries between responsibilities.
+
+Some parts of the logic were tightly connected:
+- Metrics depend on filtered data
+- Grouping depends on processed data
+- Forecast logic overlaps with aggregation logic
+
+Separating these without breaking behavior required careful thinking.
+
+Another challenge was ensuring:
+- No logic was changed during extraction
+- Data passed between functions remained correct
+
+This required a disciplined approach—moving logic without altering it.
+
+---
+
+## 3. Which extracted function would be most reusable in other contexts?
+
+The most reusable functions are:
+
+### apply_filters
+- Works with any dataset
+- Uses generic key-value filtering
+- Can be reused in APIs, dashboards, and data processing systems
+
+### calculate_metrics
+- Useful for analytics and reporting systems
+- Can be adapted to different numeric datasets
+
+### group_data
+- Useful for aggregation and reporting
+- Applicable across many domains
+
+If one must be chosen, **apply_filters** is the most reusable because it is completely domain-independent.
+
+---
+
+## Final Insight
+
+This refactoring was not just about improving code—it was about improving design.
+
+The function was transformed from a single large block into a structured pipeline:
+
+Validate ? Process ? Compute ? Build ? Output
+
+This makes the system easier to understand, extend, and maintain.
